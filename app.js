@@ -16,7 +16,7 @@ function createHttps(config, app) {
       const result = await app.curl(config.url + 'exchange/v1/market/currency/rate', {
         method: 'GET',
         contentType: 'json',
-        timeout: 1000,
+        timeout: 10000,
         data: {
           from_currency: "CNY",
           to_currency: "USD"
