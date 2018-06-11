@@ -48,7 +48,7 @@ function createHttps(config, app) {
       const result = await app.curl(config.url + 'exchange/v1/account/asset/usd', {
         method: 'GET',
         contentType: 'json',
-        timeout: 1000,
+        timeout: 10000,
         data: {
           token: token
         },
@@ -60,7 +60,7 @@ function createHttps(config, app) {
       const result1 = await app.curl(config.url + 'exchange/v1/account/asset/usd', {
         method: 'GET',
         contentType: 'json',
-        timeout: 1000,
+        timeout: 10000,
         data: {
           token: token,
           business: 'leverage'
