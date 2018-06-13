@@ -57,7 +57,7 @@ function createHttps(config, app) {
         },
         dataType: 'json',
       });
-      const result1 = await app.curl(config.url + 'exchange/v1/account/asset/usd', {
+      const result1 = await app.curl(config.url + '/exchange/v1/account/asset/usd/total', {
         method: 'GET',
         contentType: 'json',
         timeout: 10000,
@@ -100,16 +100,7 @@ function createHttps(config, app) {
         }
       }
       //tim add 杠杆资产
-      var leverage_assets = result1.data.data;
-      var leverage_total = 0;
-      for (var i = 0; i < leverage_assets.length; i++) {
-        for (var y = 0; y < leverage_assets[i].asset_detail.length; y++) {
-          if (leverage_assets[i].asset_detail[y].asset == "USD") {
-            leverage_total += Number(leverage_assets[i].asset_detail[y].total);
-            continue;
-          }
-        }
-      }
+      var leverage_total = result1.data.data.total_market_value ? result1.data.data.total_market_value : 0;
       return {
         code: 0,
         data: {
